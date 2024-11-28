@@ -1,5 +1,4 @@
 #!/Usr/bin/env python
-# import numpy as np
 import re
 import datetime
 from subprocess import run
@@ -14,7 +13,7 @@ def get_empty_slots(meetings):
     minutes_day = [False] * (60 * 24)
 
     for meeting in meetings:
-        # прсим время из строчки
+        # парсим время из строчки
         start, finish = re.findall(r"\d{1,2}:\d{1,2}", meeting)
         start_minute = int(start.split(":")[0]) * 60 + int(start.split(":")[1])
         finish_minute = int(finish.split(":")[0]) * 60 + int(finish.split(":")[1])
@@ -99,10 +98,10 @@ result = run(
 )
 
 result = result.stdout
-print(f"Ответ икалбадди {result}\n\n")
+# print(f"Ответ икалбадди {result}\n\n")
 meet = [x[1:-1] for x in result.split("•") if x != ""]
 
-print(f"Список встреч {meet}\n\n")
+# print(f"Список встреч {meet}\n\n")
 
 if my_namespace.d == current_date:
     busy_t_early = "00:00 - " + str(current_time)
@@ -111,11 +110,11 @@ else:
 
 busy_t_late = "19:00 - 23:59"
 
-meet.append(busy_t_late)
+# meet.append(busy_t_late)
 
 meet[0] = busy_t_early
 slots = get_empty_slots(meet)
-print(f"Список встреч 2 {meet}\n\n")
+print(f"Диагностика - список встреч 2 {meet}\n\n")
 # print(meet)
 slots2 = "".join("• c " + str(x).replace(" ", " по ") + "\n" for x in slots)
 
